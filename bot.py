@@ -3,7 +3,7 @@ import vars
 import os
 import sys
 import asyncio
-from tu import humanbytes, progress_for_pyrogram, take_ss, TimeFormatter, get_width_height
+from tu import humanbytes, progress_for_pyrogram, check_is_streamable, get_video_duration,  take_ss, TimeFormatter, get_width_height
 from os import path as os_path
 
 BLACKLISTED_EXTENSIONS = (".sex")
@@ -90,6 +90,12 @@ async def tg_up(input_str, message, sts_msg, drm=True):
     else:
         thumb = None
     file_name = os_path.basename(input_str)
+ 
+   if check_is_streamable(file_name):
+        try:
+            duration = await get_video_duration(input_str)
+        except:
+            duration = None
 
     if thumb is None:
         thumb = await take_ss(input_str)
