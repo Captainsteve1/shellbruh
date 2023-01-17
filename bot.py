@@ -91,7 +91,7 @@ async def tg_up(input_str, message, sts_msg, drm=True):
         thumb = None
     file_name = os_path.basename(input_str)
 
-        if thumb is None:
+    if thumb is None:
             thumb = await take_ss(input_str)
         sent_msg = await client.send_video(chat_id=chat_id,
                                 video=input_str,
