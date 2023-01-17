@@ -2,7 +2,6 @@ from pyrogram import *
 import vars
 import os
 import sys
-import asyncio
 from os import path as os_path
 
 BLACKLISTED_EXTENSIONS = (".sex")
@@ -17,27 +16,27 @@ def start(client, message):
 @tony.on_message(filters.command('help') & filters.private)
 def help(client, message):
     if help:
-       message.reply_text(text="Helps")
+       message.reply_text(text="this bot just for shell, made by @tont9848")
     else:
        message.reply_text(text="No helps")
 
 async def run_comman_d(command_list):
     process = await asyncio.create_subprocess_shell(
         command_list,
-        # stdout must a pipe to be accessible as process.stdout
+        # stdout ni access cheyadaniki pipe kavalli ra subprocess.pipe
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
     )
-    # Wait for the subprocess to finish
+    # idi kavalli zumka 
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
     t_response = stdout.decode().strip()
     return e_response, t_response
 
 @tony.on_message(filters.command('shell') & filters.private)
-async def tg_s_Handler(client, message):
+def shell(client, message):
     cmd = message.text.split(' ', 1)
-    sts = await message.reply_text("loading...")
+    sts = await message.reply_text("poonakalu loading...")
     if len(cmd) == 1:
         return await sts.edit('**Send a command**')
     cmd = cmd[1]
