@@ -96,8 +96,8 @@ def tg_up(input_str, message, sts_msg, drm=True):
         except:
             duration = None
     if thumb is None:
-            thumb = 
-await take_ss(input_str)
+            thumb = None
+take_ss(input_str)
         sent_msg = await client.send_video(chat_id=chat_id,
                                 video=input_str,
                                   thumb=thumb
