@@ -115,8 +115,6 @@ file_name))
 print("well starting up")
 print("Bot started..")
 
-asyncio.run()
-
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(startBot()) 
     asyncio.get_event_loop().run_forever() 
