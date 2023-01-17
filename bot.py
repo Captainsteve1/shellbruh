@@ -2,7 +2,7 @@ from pyrogram import *
 import vars
 
 
-tony = Client (api_id=vars.id, api_hash=vars.hash, bot_token=vars.token)
+tony = Client(name="My Tony", api_id=vars.api_id, api_hash=vars.api_hash, bot_token=vars.bot_token)
 
 @tony.on_message()
 def hi(client, message):
