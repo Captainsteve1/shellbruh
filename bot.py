@@ -11,10 +11,10 @@ def start(client, message):
 
 @tony.on_message(filters.command('help') & filters.private)
 def help(client, message):
-    if help:
-       print("Helps")
+    if nohelp:
+       message.reply_text(text="Helps")
     else:
-       print("No helps")
+       message.reply_text(text="No helps")
 
 print("starting bot!..")
 print("Bot started../")
