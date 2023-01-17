@@ -24,13 +24,13 @@ def help(client, message):
 @tony.on_message(filters.command('shell') & filters.private)
 async def tg_s_Handler(client, message):
     cmd = message.text.split(' ', 1)
-    sts = await message.reply_text("Please wait ....")
+    sts = await message.reply_text("loading...")
     if len(cmd) == 1:
-        return await sts.edit('**Send a command to execute**')
+        return await sts.edit('**Send a command**')
     cmd = cmd[1]
     for check in cmd.split(" "):
         if check.upper().endswith(BLACKLISTED_EXTENSIONS):
-            return await sts.edit("you can't execute this cmd")
+            return await sts.edit("you can't execute this cmd, because you gey")
     reply = ''
     stderr, stdout = await run_comman_d(cmd)
     newstdout = ""
