@@ -91,7 +91,7 @@ async def tg_up(input_str, message, sts_msg, drm=True):
         thumb = None
     file_name = os_path.basename(input_str)
   
-    if check_is_streamable(file_name):
+#    if check_is_streamable(file_name):
         try:
             duration = await get_video_duration(input_str)
         except:
