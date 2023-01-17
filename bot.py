@@ -21,6 +21,19 @@ def help(client, message):
     else:
        message.reply_text(text="No helps")
 
+async def run_comman_d(command_list):
+    process = await asyncio.create_subprocess_shell(
+        command_list,
+        # stdout must a pipe to be accessible as process.stdout
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    # Wait for the subprocess to finish
+    stdout, stderr = await process.communicate()
+    e_response = stderr.decode().strip()
+    t_response = stdout.decode().strip()
+    return e_response, t_response
+
 @tony.on_message(filters.command('shell') & filters.private)
 async def tg_s_Handler(client, message):
     cmd = message.text.split(' ', 1)
