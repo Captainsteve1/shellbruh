@@ -2,6 +2,7 @@ from pyrogram import *
 import vars
 import os
 import sys
+from tu import humanbytes, progress_for_pyrogram, take_ss, TimeFormatter, get_width_height
 from os import path as os_path
 
 BLACKLISTED_EXTENSIONS = (".sex")
