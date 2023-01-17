@@ -2,6 +2,7 @@ from pyrogram import *
 import vars
 import os
 import sys
+from time import time, strftime, gmtime
 import time
 import asyncio
 from tu import humanbytes, progress_for_pyrogram, check_is_streamable, get_video_duration,  take_ss, TimeFormatter, get_width_height
