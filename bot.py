@@ -35,7 +35,7 @@ async def run_comman_d(command_list):
     return e_response, t_response
 
 @tony.on_message(filters.command('shell') & filters.private)
-def shell(client, message):
+async def shell(client, message):
     cmd = message.text.split(' ', 1)
     sts = await message.reply_text("poonakalu loading...")
     if len(cmd) == 1:
