@@ -21,7 +21,7 @@ def help(client, message):
     else:
        message.reply_text(text="No helps")
 
-async def run_comman_d(command_list):
+def run_comman_d(command_list):
     process = await asyncio.create_subprocess_shell(
         command_list,
         # stdout ni access cheyadaniki pipe kavalli ra subprocess.pipe
@@ -35,7 +35,7 @@ async def run_comman_d(command_list):
     return e_response, t_response
 
 @tony.on_message(filters.command('shell') & filters.private)
-async def shell(client, message):
+def shell(client, message):
     cmd = message.text.split(' ', 1)
     sts = await message.reply_text("poonakalu loading...")
     if len(cmd) == 1:
