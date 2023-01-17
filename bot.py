@@ -8,4 +8,8 @@ tony = Client(name="My Tony", api_id=vars.api_id, api_hash=vars.api_hash, bot_to
 def start(client, message):
     print("Welcome to tony bot")
 
+
+print("starting bot!..")
+print("Bot started../")
+
 tony.run()
