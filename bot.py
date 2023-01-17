@@ -115,4 +115,5 @@ file_name))
 print("well starting up")
 print("Bot started..")
 
-tony.run()
+async def startBot():
+    await tony.start()
