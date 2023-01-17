@@ -66,6 +66,45 @@ def shell(client, message):
     else:
         await sts.edit('Executed')
 
+@tony.on_message(filters.command("tgup") & filters.private)
+def tg_up(client, message):
+    sts_msg = await message.reply_text("loading")
+    try:
+        input_str = message.text.split(" ", 1)[1]
+    except:
+        await message.reply_text("send along with file path")
+        await sts_msg.delete()
+        return
+    await tg_up(input_str, message, sts_msg, False)
+
+def tg_up(input_str, message, sts_msg, drm=True):
+    if not os_path.exists(input_str):
+        await sts_msg.delete()
+        await message.reply_text(f"{input_str} path lo ledu ra")
+        return
+
+    if os_path.exists(str(message.from_user.id) + ".jpg"):
+        thumb = str(message.from_user.id) + ".jpg"
+    else:
+        thumb = None
+    file_name = os_path.basename(input_str)
+  
+    if check_is_streamable(file_name):
+        try:
+            duration = await get_video_duration(input_str)
+        except:
+            duration = None
+    if thumb is None:
+            thumb = await take_ss(input_str)
+        sent_msg = await client.send_video(chat_id=chat_id,
+                                video=input_str,
+                                  thumb=thumb
+                                  progress=progress_for_pyrogram,
+                                  progress_args=("Uploading",
+                                                 sts_msg,
+                                                 current_time,
+
+                        
 print("well starting up")
 print("Bot started..")
 
