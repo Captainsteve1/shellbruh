@@ -36,6 +36,18 @@ async def take_ss(video_file):
         img.convert("RGB").save(des_dir, "JPEG")
     return des_dir
 
+async def downloadaudiocli(command_to_exec):
+    process = await asyncio.create_subprocess_exec(
+        *command_to_exec,
+        # stdout must a pipe to be accessible as process.stdout
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE, )
+    stdout, stderr = await process.communicate()
+    e_response = stderr.decode().strip()
+    t_response = stdout.decode().strip()
+    print("Download error:", e_response)
+    return e_response, t_response
+
 async def progress_for_pyrogram(
     current,
     total,
