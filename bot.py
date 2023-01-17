@@ -2,6 +2,7 @@ from pyrogram import *
 import vars
 import os
 import sys
+import asyncio
 from os import path as os_path
 
 tony = Client(name="My Tony", api_id=vars.api_id, api_hash=vars.api_hash, bot_token=vars.bot_token)
@@ -19,32 +20,39 @@ def help(client, message):
        message.reply_text(text="No helps")
 
 @tony.on_message(filters.command('shell') & filters.private)
-def shell(client, message):
-    message = update.effective_message
-    cmd = message.text
-    process = srun(cmd, capture_output=True, shell=True)
+async def tg_s_Handler(bot: tony, message: Message):
+    cmd = message.text.split(' ', 1)
+    sts = await message.reply_text("Please wait ....")
+    if len(cmd) == 1:
+        return await sts.edit('**Send a command to execute**')
+    cmd = cmd[1]
+    for check in cmd.split(" "):
+        if check.upper().endswith(BLACKLISTED_EXTENSIONS):
+            return await sts.edit("you can't execute this cmd")
     reply = ''
-    stdout = process.stdout.decode('utf-8')
-    stderr = process.stderr.decode('utf-8')
-    if len(stdout) != 0:
-        reply += f"<b>Stdout</b>\n<code>{stdout}</code>\n"
+    stderr, stdout = await run_comman_d(cmd)
+    newstdout = ""
+    for line in stdout.split("\n"):
+        if not line.upper().endswith(BLACKLISTED_EXTENSIONS):
+            newstdout += line + "\n"
+    if len(newstdout) != 0:
+        reply += f"<b>Stdout</b>\n<code>{newstdout}</code>\n"
     if len(stderr) != 0:
         reply += f"<b>Stderr</b>\n<code>{stderr}</code>\n"
     if len(reply) > 3000:
         with open('output.txt', 'w') as file:
             file.write(reply)
         with open('output.txt', 'rb') as doc:
-            context.bot.send_document(
+            await message.reply_document(
                 document=doc,
-                filename=doc.name,
-                reply_to_message_id=message.message_id,
-                chat_id=message.chat_id)
+                caption=f"`{cmd}`")
+            await sts.delete()
     elif len(reply) != 0:
-        sendMessage(reply, context.bot, update.message)
+        await sts.edit(reply)
     else:
-        sendMessage('Executed', context.bot, update.message)
+        await sts.edit('Executed')
 
-print("starting bot!..")
-print("Bot started../")
+print("well starting up")
+print("Bot started..")
 
 tony.run()
