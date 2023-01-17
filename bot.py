@@ -11,7 +11,7 @@ def start(client, message):
 
 @tony.on_message(filters.command('help') & filters.private)
 def help(client, message):
-    if nohelp:
+    if help:
        message.reply_text(text="Helps")
     else:
        message.reply_text(text="No helps")
