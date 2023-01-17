@@ -115,8 +115,13 @@ file_name))
 print("well starting up")
 print("Bot started..")
 
-if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(startBot()) 
-    asyncio.get_event_loop().run_forever() 
-    asyncio.get_event_loop().close() 
-    sys.exit(0)
+async def startBot():
+    await tony.start()
+    await tonyuser.start()
+    print("--------zumka started--------")
+    print("---------Client started--------")
+    await idle()
+    await tonyUser.stop()
+    await tony.stop()
+    print("----------Bot Stopped----------")
+    print("--------------BYE!-------------")
