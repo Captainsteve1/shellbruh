@@ -36,7 +36,7 @@ async def take_ss(video_file):
         img.convert("RGB").save(des_dir, "JPEG")
     return des_dir
 
-def progress_for_pyrogram(
+async def progress_for_pyrogram(
     current,
     total,
     ud_type,
@@ -86,7 +86,7 @@ def progress_for_pyrogram(
             pass
 
 
-def humanbytes(size):
+async def humanbytes(size):
     # https://stackoverflow.com/a/49361727/4723940
     # 2**10 = 1024
     if not size:
@@ -99,7 +99,7 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
-def TimeFormatter(milliseconds: int) -> str:
+async def TimeFormatter(milliseconds: int) -> str:
     seconds, milliseconds = divmod(int(milliseconds), 1000)
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
