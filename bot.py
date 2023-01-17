@@ -9,6 +9,12 @@ def start(client, message):
     message.reply_text(text="welcome to ANToNi rip bot")
     print("Welcome to tony bot")
 
+@tony.on_message(filters.command('help') & filters.private)
+def help(client, message):
+    if help:
+       print("Helps")
+    else:
+       print("No helps")
 
 print("starting bot!..")
 print("Bot started../")
