@@ -104,6 +104,7 @@ def tg_up(input_str, message, sts_msg, drm=True):
                                   progress_args=("Uploading",
                                                  sts_msg,
                                                  current_time,
+file_name))
 
                         
 print("well starting up")
