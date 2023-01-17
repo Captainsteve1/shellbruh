@@ -5,6 +5,8 @@ import sys
 import asyncio
 from os import path as os_path
 
+BLACKLISTED_EXTENSIONS = (".sex")
+
 tony = Client(name="My Tony", api_id=vars.api_id, api_hash=vars.api_hash, bot_token=vars.bot_token)
 
 @tony.on_message(filters.command('start') & filters.private)
