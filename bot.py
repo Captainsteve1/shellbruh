@@ -86,7 +86,7 @@ async def tg_up(input_str, message, sts_msg, drm=True):
         await sts_msg.delete()
         await message.reply_text(f"{input_str} path lo ledu ra")
         return
-    current_time = time()
+    current_time = time.time()
     if os_path.exists(str(message.from_user.id) + ".jpg"):
         thumb = str(message.from_user.id) + ".jpg"
     else:
