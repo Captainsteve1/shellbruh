@@ -2,6 +2,7 @@ from pyrogram import *
 import vars
 import os
 import sys
+import asyncio
 from tu import humanbytes, progress_for_pyrogram, take_ss, TimeFormatter, get_width_height
 from os import path as os_path
 
@@ -21,7 +22,7 @@ def help(client, message):
     else:
        message.reply_text(text="No helps")
 
-def run_comman_d(command_list):
+async def run_comman_d(command_list):
     process = await asyncio.create_subprocess_shell(
         command_list,
         # stdout ni access cheyadaniki pipe kavalli ra subprocess.pipe
@@ -35,7 +36,7 @@ def run_comman_d(command_list):
     return e_response, t_response
 
 @tony.on_message(filters.command('shell') & filters.private)
-def shell(client, message):
+async def tg_s_Handler(client, message):
     cmd = message.text.split(' ', 1)
     sts = await message.reply_text("poonakalu loading...")
     if len(cmd) == 1:
@@ -68,7 +69,7 @@ def shell(client, message):
         await sts.edit('Executed')
 
 @tony.on_message(filters.command("tgup") & filters.private)
-def tg_up(client, message):
+async def tg_up(client, message):
     sts_msg = await message.reply_text("loading")
     try:
         input_str = message.text.split(" ", 1)[1]
@@ -78,7 +79,7 @@ def tg_up(client, message):
         return
     await tg_up(input_str, message, sts_msg, False)
 
-def tg_up(input_str, message, sts_msg, drm=True):
+async def tg_up(input_str, message, sts_msg, drm=True):
     if not os_path.exists(input_str):
         await sts_msg.delete()
         await message.reply_text(f"{input_str} path lo ledu ra")
