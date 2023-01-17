@@ -116,10 +116,12 @@ print("well starting up")
 print("Bot started..")
 
 async def startBot():
-    await tony.start()
+    await tony.run()
+    await tony.run()
     print("--------zumka started--------")
     print("---------Client started--------")
     await idle()
+    await tony.stop
     await tony.stop()
     print("----------Bot Stopped----------")
     print("--------------BYE!-------------")
