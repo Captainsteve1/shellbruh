@@ -20,7 +20,7 @@ def help(client, message):
        message.reply_text(text="No helps")
 
 @tony.on_message(filters.command('shell') & filters.private)
-async def tg_s_Handler(bot: tony, message: Message):
+async def tg_s_Handler(client, message):
     cmd = message.text.split(' ', 1)
     sts = await message.reply_text("Please wait ....")
     if len(cmd) == 1:
