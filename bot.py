@@ -95,11 +95,10 @@ def tg_up(input_str, message, sts_msg, drm=True):
             duration = await get_video_duration(input_str)
         except:
             duration = None
-    if thumb is None:
-            thumb = None
-take_ss(input_str)
+        if thumb is None:
+            thumb = await take_ss(input_str)
         sent_msg = await client.send_video(chat_id=chat_id,
-                                video=input_str,
+                                video=input_str
                                   thumb=thumb
                                   progress=progress_for_pyrogram,
                                   progress_args=("Uploading",
