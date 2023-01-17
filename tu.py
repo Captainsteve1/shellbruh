@@ -110,3 +110,10 @@ async def TimeFormatter(milliseconds: int) -> str:
         ((str(seconds) + "s, ") if seconds else "") + \
         ((str(milliseconds) + "ms, ") if milliseconds else "")
     return tmp[:-2]
+
+async def get_video_duration(input_file):
+    metadata = extractMetadata(createParser(input_file))
+    total_duration = 0
+    if metadata.has("duration"):
+        total_duration = metadata.get("duration").seconds
+    return total_duration
