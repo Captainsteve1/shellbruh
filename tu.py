@@ -3,6 +3,7 @@ import time
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 import os
+from PIL import Image
 from subprocess import run as srun
 
 
